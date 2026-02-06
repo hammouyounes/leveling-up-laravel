@@ -67,5 +67,53 @@ Route::get('/product/{name}/{id}',function($name,$id){
 })->where(['name'=>'[a-z]+', 'id'=>'[0-9]+']);
 
 
+//SCÉNARIO 2 : Groupes de Routes
+
+// Groupe avec préfixe
+Route::prefix('admin')->group(function(){
+    Route::get('/dashboard', function(){
+        return 'Admin dashboard';
+    });
+
+    Route::get('/settings', function(){
+        return 'Admin settings';
+    });
+
+    Route::get('/users', function(){
+        return 'Admin users';
+    });
+});
+
+// Groupe avec nom de route
+Route::name('admin.')->group(function(){
+    Route::get('/panel', function(){
+        return "Panel";
+    })->name('panel');
+
+    Route::get('/stats', function(){
+        return "Statistics";
+    })->name('stats');
+});
+
+// Groupe combiné (préfixe + nom)
+Route::prefix('api')->name('api.')->group(function(){
+    Route::get('/posts', function(){
+        return "Posts page";
+    })->name('posts');
+
+    Route::get('/comments', function(){
+        return "Comments section";
+    })->name('comments');
+});
 
 
+// Groupe avec sous-domaine
+Route::domain('blog.localhost')->group(function () {
+    Route::get('/', function () {
+        return 'Blog Homepage';
+    });
+    
+    Route::get('/article/{slug}', function ($slug) {
+        return "Blog Article: $slug";
+    });
+});
