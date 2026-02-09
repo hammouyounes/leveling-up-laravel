@@ -1,8 +1,12 @@
 <?php
 
+use Illuminate\Http\Request as HttpRequest;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
+use Illuminate\View\View;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+// use Illuminate\Http\Request;
 
 Route::get('/', function () {
     return view('welcome');
@@ -117,3 +121,36 @@ Route::domain('blog.localhost')->group(function () {
         return "Blog Article: $slug";
     });
 });
+
+
+
+// SCÉNARIO 3 : Méthodes HTTP (POST, PUT, DELETE)
+// Afficher le formulaire
+Route::get('/form', function(){
+    return view('form');
+});
+
+
+// Traiter le formulaire (POST)
+
+Route::post('/submit', function(Illuminate\Http\Request $request){
+    return "Données reçus : " . $request->input('name');
+})->name('submit');
+
+
+// Mise à jour (PUT)
+Route::put('/update/{id}', function($id, Illuminate\Http\Request $request){
+    return "Mise a jour de l'element avec $id par : " . $request->input('data'); 
+})->name('update');
+
+
+// Suppression (DELETE)
+Route::delete('/delete/{id}', function($id){
+    return "Suppression de l'element avec l'id : $id";
+})->name('delete');
+
+
+// Route ressource (toutes les méthodes CRUD)
+// Route::resource('tasks', function(){
+//     // Laravel génère automatiquement toutes les routes CRUD
+// });
