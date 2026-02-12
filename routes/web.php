@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Http\Request as HttpRequest;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
@@ -14,9 +15,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
     });
 
     Route::prefix('posts')->name('posts.')->group(function(){
-        Route::get('/', function(){
-            return view('posts');
-        })->where('id', '[0-9]+');
+        Route::get('/', [AdminController::class, 'index'])->where('id', '[0-9]+')->name('posts.index');;
 
         Route::get('/create', function(){
             return view('createPost');
