@@ -11,7 +11,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = session()->get('products', []);
+        return view('products.index', compact('products'));
     }
 
     /**
@@ -19,7 +20,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('products.create');
     }
 
     /**
@@ -27,7 +28,13 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product = [
+            'id' => uniqid(),
+            'name' => $request->input('name'),
+            'price' => $request->input('price'),
+        ];
+        session()->push('products',$product);
+        return redirect()->back()->with('success', 'Produit ajouté');
     }
 
     /**
@@ -59,6 +66,6 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        
     }
 }
