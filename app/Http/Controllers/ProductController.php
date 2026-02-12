@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductRequest;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -26,13 +27,11 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        $product = [
-            'id' => uniqid(),
-            'name' => $request->input('name'),
-            'price' => $request->input('price'),
-        ];
+
+        
+        $product = $request->validated();
         session()->push('products',$product);
         return redirect()->back()->with('success', 'Produit ajouté');
     }
