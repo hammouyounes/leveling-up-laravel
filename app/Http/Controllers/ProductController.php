@@ -29,11 +29,9 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-
-        
         $product = $request->validated();
         session()->push('products',$product);
-        return redirect()->back()->with('success', 'Produit ajouté');
+        return redirect()->route('admin.products.index')->with('success', 'Produit ajouté');
     }
 
     /**
