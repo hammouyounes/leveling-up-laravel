@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -55,6 +56,12 @@ Route::prefix('admin')->name('admin.')->group(function(){
     Route::prefix('contacts')->name('contacts.')->group(function(){
         Route::get('/create', [ContactsController::class, 'create'])->name('create');
         Route::post('/contact', [ContactsController::class, 'store'])->name('store');
+    });
+
+
+    Route::prefix('articles')->name('articles.')->group(function(){
+        Route::get('/create', [ArticleController::class, 'create'])->name('create');
+        Route::post('/article', [ArticleController::class, 'store'])->name('store');
     });
 });
 

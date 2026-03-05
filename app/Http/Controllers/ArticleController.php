@@ -33,10 +33,13 @@ class ArticleController extends Controller
         // ✓ author (string)
         // ✓ timestamp
         $request->validate([
-            'title'=>'required|max:100',
+            'title'=>'required|min:5',
+            'content'=>'required|min:20',
             'author'=>'required',
         ]);
         Article::create($request->all());
+        return "Article Crée avec succées";
+
     }
 
     /**
