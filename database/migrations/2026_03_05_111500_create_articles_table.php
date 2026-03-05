@@ -8,15 +8,16 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     
      */
     public function up(): void
     {
-        Schema::create('articles', function (Blueprint $table){
-        $table->id();
-        $table->string('title');
-        $table->string('slug')->unique(); // Souvent utilisé pour le binding
-        $table->text('body');
-        $table->timestamps();
+        Schema::create('articles', function (Blueprint $table) {
+            $table->id();
+            $table->string('title');
+            $table->text('content');
+            $table->string('author');
+            $table->timestamps();
         });
     }
 
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('articles');
     }
 };
