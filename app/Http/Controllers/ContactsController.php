@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class ContactsController extends Controller
 {
     public function create(){
-        return view('contact');
+        return view('contacts.create');
     }
 
     public function store(Request $request){

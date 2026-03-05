@@ -53,8 +53,8 @@ Route::prefix('admin')->name('admin.')->group(function(){
         });
 
     Route::prefix('contacts')->name('contacts.')->group(function(){
-        Route::get('/', [ContactsController::class, 'create'])->name('contact.create');
-        Route::post('/contact', [ContactsController::class, 'store'])->name('contact.store');
+        Route::get('/create', [ContactsController::class, 'create'])->name('create');
+        Route::post('/contact', [ContactsController::class, 'store'])->name('store');
     });
 });
 
