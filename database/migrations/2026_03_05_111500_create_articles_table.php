@@ -10,12 +10,6 @@ return new class extends Migration
      * Run the migrations.
      
      */
-
-//     ✓ id
-// ✓ title (string)
-// ✓ content (text)
-// ✓ author (string)
-// ✓ timestamp
     public function up(): void
     {
         Schema::create('articles', function (Blueprint $table) {

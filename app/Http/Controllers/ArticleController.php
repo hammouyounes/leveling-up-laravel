@@ -20,7 +20,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        return view('articles.create');
     }
 
     /**
@@ -28,7 +28,15 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //  title (string)
+        // ✓ content (text)
+        // ✓ author (string)
+        // ✓ timestamp
+        $request->validate([
+            'title'=>'required|max:100',
+            'author'=>'required',
+        ]);
+        Article::create($request->all());
     }
 
     /**
